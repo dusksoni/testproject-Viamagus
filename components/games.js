@@ -43,12 +43,27 @@ const Games = () => {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <Text style={{color: 'white', fontWeight: '600'}}>
-              Under or Over
-            </Text>
-            <Text style={{color: '#B296DC', fontWeight: '600'}}>
-              Starting in 03:23:12
-            </Text>
+            <View style={{display: 'flex', flexDirection: 'row', gap: 8}}>
+              <Text style={{color: 'white', fontWeight: '600'}}>
+                Under or Over
+              </Text>
+              <Image
+                source={require('../assets/image/info.png')}
+                style={{marginTop: 'auto', marginBottom: 'auto'}}
+              />
+            </View>
+            <View style={{display: 'flex', flexDirection: 'row', gap: 8}}>
+              <Text style={{color: '#B296DC', fontWeight: '600'}}>
+                Starting in
+              </Text>
+              <Image
+                source={require('../assets/image/Clock.png')}
+                style={{marginTop: 'auto', marginBottom: 'auto'}}
+              />
+              <Text style={{color: '#B296DC', fontWeight: '600'}}>
+                03:23:12
+              </Text>
+            </View>
           </View>
           <View style={{flexDirection: 'column', marginTop: 16}}>
             <Text style={{color: 'white', fontWeight: '400'}}>
@@ -147,16 +162,27 @@ const Games = () => {
                   backgroundColor: '#452C55',
                   borderRadius: 45,
                 }}>
-                <Text
+                <View
                   style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 4,
                     marginLeft: 'auto',
                     marginRight: 'auto',
-                    color: 'white',
-                    fontWeight: '600',
-                    fontSize: 14,
                   }}>
-                  Under
-                </Text>
+                  <Image
+                    source={require('../assets/image/up.png')}
+                    style={{marginTop: 'auto', marginBottom: 'auto'}}
+                  />
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontWeight: '600',
+                      fontSize: 14,
+                    }}>
+                    Under
+                  </Text>
+                </View>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -168,16 +194,27 @@ const Games = () => {
                   borderRadius: 45,
                 }}
                 onPress={() => openPanel()}>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      gap: 4,
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    }}>
+                    <Image
+                      source={require('../assets/image/down.png')}
+                      style={{marginTop: 'auto', marginBottom: 'auto'}}
+                    />
                 <Text
                   style={{
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
                     color: 'white',
                     fontWeight: '600',
                     fontSize: 14,
                   }}>
                   Over
                 </Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -195,12 +232,26 @@ const Games = () => {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
+              <View style={{display: 'flex', flexDirection: 'row', gap: 8}}>
+              <Image
+                source={require('../assets/image/user.png')}
+                style={{marginTop: 'auto', marginBottom: 'auto', height: 14, width: 14}}
+              
+              />
             <Text style={{color: '#727682', fontWeight: '600', fontSize: 14}}>
               355 Players
             </Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row', gap: 8}}>
+              <Image
+                source={require('../assets/image/chart.png')}
+                style={{marginTop: 'auto', marginBottom: 'auto', height: 14, width: 14}}
+              
+              />
             <Text style={{color: '#727682', fontWeight: '600', fontSize: 14}}>
               View chart
             </Text>
+            </View>
           </View>
           <View>
             <Progress.Bar
@@ -225,8 +276,8 @@ const Games = () => {
               123 predicted over
             </Text>
           </View>
-          
         </View>
+      
       </View>
     </View>
   );

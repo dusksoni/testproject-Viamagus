@@ -5,40 +5,33 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-native-modal';
 import ScrollPicker from 'react-native-wheel-scrollview-picker';
-import { useNavigation } from "@react-navigation/native";
-
+import {useNavigation} from '@react-navigation/native';
+import SwipeablePanel from 'react-native-sheets-bottom';
 
 const SwipuUp = ({isPanelActive, closePanel}) => {
   const [selectedValue, setSelectedValue] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(4);
   const navigation = useNavigation();
 
+  console.log(selectedIndex);
   const handleValueChange = (value, index) => {
     setSelectedValue(value);
     setSelectedIndex(index);
   };
   return (
-    <Modal
-      isVisible={isPanelActive}
-      swipeDirection={['up', 'down']}
-      onSwipeComplete={closePanel}
-      onBackdropPress={closePanel}
-      style={styles.modal}>
+    <SwipeablePanel
+      // fullWidth
+      style={{height: 550}}
+      onlyLarge
+      isActive={isPanelActive}
+      onClose={closePanel}
+      >
       <View style={styles.modalContent}>
-        <View
-          style={{
-            height: 4,
-            width: 30,
-            backgroundColor: '#B5C0C8',
-            borderRadius: 30,
-            marginBottom: 20,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-          }}></View>
         <View style={{marginBottom: 28}}>
           <Text style={{fontSize: 16, fontWeight: '600', color: '#333333'}}>
             Your Prediction is Under
@@ -49,7 +42,7 @@ const SwipuUp = ({isPanelActive, closePanel}) => {
             ENTRY TICKETS
           </Text>
         </View>
-        <View style={{height: 250, width: '100%', backgroundColor: 'red'}}>
+        <View style={{height: 200, backgroundColor: "white"}}>
           <ScrollPicker
             dataSource={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
             selectedIndex={selectedIndex}
@@ -70,7 +63,7 @@ const SwipuUp = ({isPanelActive, closePanel}) => {
                   ]}>
                   <Text
                     style={
-                      index === selectedIndex ? {fontWeight: '800'} : null
+                      index === selectedIndex ? {fontWeight: '800', color: "black"} : {color: "black"}
                     }>
                     {data}
                   </Text>
@@ -80,11 +73,10 @@ const SwipuUp = ({isPanelActive, closePanel}) => {
             onValueChange={(data, selectedIndex) => {
               handleValueChange(data, selectedIndex);
             }}
-            wrapperHeight={300}
+            wrapperHeight={200} // Adjusted height
             wrapperBackground="#FFFFFF"
             itemHeight={36}
             highlightColor="#e5d7f7"
-            // highlightBorderWidth={2}
           />
         </View>
         <View>
@@ -129,7 +121,8 @@ const SwipuUp = ({isPanelActive, closePanel}) => {
               alignContent: 'center',
               backgroundColor: '#6231AD',
               borderRadius: 45,
-            }}onPress={() => navigation.navigate("profile")}>
+            }}
+            onPress={() => navigation.navigate('profile')}>
             <Text
               style={{
                 marginLeft: 'auto',
@@ -137,13 +130,13 @@ const SwipuUp = ({isPanelActive, closePanel}) => {
                 color: 'white',
                 fontWeight: '600',
                 fontSize: 14,
-              }} >
+              }}>
               Submit my prediction
             </Text>
           </TouchableOpacity>
         </View>
       </View>
-    </Modal>
+    </SwipeablePanel>
   );
 };
 
@@ -156,7 +149,7 @@ const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
     margin: 0,
-    marginBottom: -15
+    marginBottom: -15,
   },
   modalContent: {
     backgroundColor: 'white',
@@ -167,6 +160,10 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
+  },
+  gradientWrapper: {
+    position: 'absolute',
+    width: '100%',
   },
 });
 
